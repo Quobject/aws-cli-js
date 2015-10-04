@@ -26,16 +26,30 @@ With promise
 
 ```js
 var awsCli = new AwsCli({
-  profile: 'default',                       
   aws_access_key_id: 'PUTVALUEHERE',
-  aws_secret_access_key: 'abcdefPUTVALUEHERE'
+  aws_secret_access_key: 'abcdefPUTVALUEHERE',
 });
 
-awsCli.command('?? ').then(function (data) {
+awsCli.command('iam list-users').then(function (data) {
   console.log('data = ', data); 
 });
 
-
+//data = {
+//  command: 'aws iam list-users ',
+//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJB73CFKOYE2FBGGM2\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::031641171132:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
+//  object:
+//   {
+//     Users:
+//      [{
+//        UserName: 'developer',
+//        PasswordLastUsed: '2015-10-03T17:58:49Z',
+//        CreateDate: '2015-06-03T07:37:25Z',
+//        UserId: 'AIDAJBXXXXXXXXXXXXXXXXX',
+//        Path: '/',
+//        Arn: 'arn:aws:iam::03XXXXXXXXX:user/developer'
+//      }]
+//   }
+//}
 
 ```
 
@@ -43,20 +57,37 @@ With callback:
 
 ```js
 
-dockerMachine.command('??', function (err, data) {
+awsCli.command('iam list-users', function (err, data) {
   console.log('data = ', data);
 });
+
+//data = {
+//  command: 'aws iam list-users ',
+//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJB73CFKOYE2FBGGM2\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::031641171132:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
+//  object:
+//   {
+//     Users:
+//      [{
+//        UserName: 'developer',
+//        PasswordLastUsed: '2015-10-03T17:58:49Z',
+//        CreateDate: '2015-06-03T07:37:25Z',
+//        UserId: 'AIDAJBXXXXXXXXXXXXXXXXX',
+//        Path: '/',
+//        Arn: 'arn:aws:iam::03XXXXXXXXX:user/developer'
+//      }]
+//   }
+//}
 
 ```
 
 * ??
 
 ```js
-dockerMachine.command('??').then(function (data) {
+awsCli.command('??').then(function (data) {
   console.log('data = ', data); 
 });
 
-//data =  { command: 'docker-machine ?? ',
+//data =  { command: 'aws ?? ',
 
 ```
 

@@ -19,7 +19,7 @@ var AwsCli = require('../lib/index.js');
 var path = require('path');
 var should = require('chai').should();
 var assert = require('chai').assert;
-
+var util = require('util');
 
 var config = require('../my_config.json');
 
@@ -34,15 +34,20 @@ describe('AwsCli', function () {
   });
 
 
-  it('command ??? should pass', function (done) {
+  it('command iam list-users should pass', function (done) {
     this.timeout(1 * 60 * 1000);//1 minute
-    var awsCli = new AwsCli();
+
+    var awsCli = new AwsCli({
+      aws_access_key_id: config.aws.accessKeyId,
+      aws_secret_access_key: config.aws.secretAccessKey
+      //cwd: 'path to current working directory'
+    });
 
     assert.isNotNull(awsCli);
     var failed = false;
     var err = null;
-    awsCli.command('ip machinename').then(function (data) {
-      console.log('data = ', data);
+    awsCli.command('iam list-users').then(function (data) {
+      //console.log('data = ', util.inspect(data, {depth: 10}));
       assert.isNotNull(data);
     }).finally(function () {
       //console.log('finally ');
@@ -52,13 +57,31 @@ describe('AwsCli', function () {
     });
   });
 
+  it('command iam list-users should pass with callback', function (done) {
+    this.timeout(1 * 60 * 1000);//1 minute
 
-  it('command ls2 should fail', function (done) {
+    var awsCli = new AwsCli({
+      aws_access_key_id: config.aws.accessKeyId,
+      aws_secret_access_key: config.aws.secretAccessKey
+      //cwd: 'path to current working directory'
+    });
+
+    assert.isNotNull(awsCli);
+    var failed = false;
+    var err = null;
+    awsCli.command('iam list-users', function (err, data) {
+      //console.log('data = ', util.inspect(data, { depth: 10 }));
+      assert.isNotNull(data);
+      done();
+    });
+  }); 
+
+  it('command aim2 should fail', function (done) {
     var awsCli = new AwsCli();
     assert.isNotNull(awsCli);
     var failed = false;
     var err = null;
-    awsCli.command('ls2').then(function (data) {
+    awsCli.command('iam2 list-users').then(function (data) {
       //console.log('data = ', data);
       assert.isNotNull(data);
     }).catch(function (error) {
@@ -74,9 +97,10 @@ describe('AwsCli', function () {
     });
   });
 
-
-
-
 });
+
+
+
+
 
 

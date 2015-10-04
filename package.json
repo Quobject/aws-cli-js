@@ -1,6 +1,6 @@
 {
   "name": "aws-cli-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A node.js wrapper for the aws command line interface",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "grunt-contrib-jshint": "~0.11.3",
     "mocha": "~2.3.3",
     "grunt-mocha-test": "~0.12.7",
-    "chai": "~3.3.0",
+    "chai": "~3.3.0"
   },
   "dependencies": {
     "lodash": "~3.10.1",
