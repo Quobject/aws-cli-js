@@ -98,7 +98,7 @@ awsCli.command('ec2 describe-instances --instance-ids i-789b3ba7').then(function
 or with options
 
 ```js
-awsCli.command('ec2 describe-instances', { 'instance-ids': instance_id }).then(function (data) {
+awsCli.command('ec2 describe-instances', { 'instance-ids': 'i-789b3ba7' }).then(function (data) {
   console.log('data = ', data); 
 });
 
