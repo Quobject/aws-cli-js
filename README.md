@@ -36,7 +36,7 @@ awsCli.command('iam list-users').then(function (data) {
 
 //data = {
 //  command: 'aws iam list-users ',
-//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJB73CFKOYE2FBGGM2\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::031641171132:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
+//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJBXXXXXXXXXXXXXXXXX\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::03XXXXXXXXX:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
 //  object:
 //   {
 //     Users:
@@ -63,7 +63,7 @@ awsCli.command('iam list-users', function (err, data) {
 
 //data = {
 //  command: 'aws iam list-users ',
-//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJB73CFKOYE2FBGGM2\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::031641171132:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
+//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJBXXXXXXXXXXXXXXXXX\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::03XXXXXXXXX:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
 //  object:
 //   {
 //     Users:
