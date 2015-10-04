@@ -1,6 +1,6 @@
 {
   "name": "aws-cli-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A node.js wrapper for the aws command line interface",
   "main": "lib/index.js",
   "scripts": {

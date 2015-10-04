@@ -26,7 +26,7 @@ With promise
 
 ```js
 var awsCli = new AwsCli({
-  aws_access_key_id: 'PUTVALUEHERE',
+  aws_access_key_id: 'PUTVALUEHERE', 
   aws_secret_access_key: 'abcdefPUTVALUEHERE',
 });
 
@@ -80,14 +80,32 @@ awsCli.command('iam list-users', function (err, data) {
 
 ```
 
-* ??
+* describe-instances
 
 ```js
-awsCli.command('??').then(function (data) {
+awsCli.command('ec2 describe-instances --instance-ids i-789b3ba7').then(function (data) {
   console.log('data = ', data); 
 });
+
+
+//data =  { command: 'aws ec2 describe-instances --instance-ids i-789b3ba7 ',
+//  raw: '["{\\n    \\"Reservations\\": [\\n        {\\n            \\"OwnerId\\": \\"031641171132\\", \\n            \\"ReservationId\\": \\"r-a48ad878\\", \\n            \\"Groups\\": [], \\n            \\"Instances\\": [\\n                {\\n
+//          \\"Monitoring\\": {\\n                        \\"State\\": \\"disabled\\"\\n                    }, \\n
+//     \\"PublicDnsName\\": \\"ec2-52-64-166-221.ap-southeast-2.compute.amazonaws.com\\", \\n                    \\"State\\": {\\n
+// ...
+
+```
+or with options
+
+```js
+awsCli.command('ec2 describe-instances', , { 'instance-ids': instance_id }).then(function (data) {
+  console.log('data = ', data); 
+});
+
+
 
 //data =  { command: 'aws ?? ',
 
 ```
+
 
