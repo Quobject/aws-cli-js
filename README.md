@@ -102,10 +102,6 @@ awsCli.command('ec2 describe-instances', , { 'instance-ids': instance_id }).then
   console.log('data = ', data); 
 });
 
-
-
-//data =  { command: 'aws ?? ',
-
 ```
 
 
