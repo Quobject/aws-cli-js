@@ -1,6 +1,4 @@
 {
-   "aws": {
-      "accessKeyId": "enter value here",
-      "secretAccessKey": "enter value here"
-    } 
+  "accessKeyId": "keyid",
+  "secretAccessKey": "secret"
 }

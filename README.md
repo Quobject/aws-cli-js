@@ -17,7 +17,9 @@ The aws command line interface must be installed and accessible in the path
 Then:
 
 ```js
-var AwsCli = require('aws-cli-js');
+var awsCli = require('aws-cli-js');
+var Options = awsCli.Options;
+var Aws = awsCli.Aws;
 ```
 
 ## Usage
@@ -25,18 +27,21 @@ var AwsCli = require('aws-cli-js');
 With promise
 
 ```js
-var awsCli = new AwsCli({
-  aws_access_key_id: 'PUTVALUEHERE', 
-  aws_secret_access_key: 'abcdefPUTVALUEHERE',
-});
+var options = new Options(
+  /* accessKey    */ 'your key',
+  /* secretKey    */ 'your key2',
+  /* currentWorkingDirectory */ null
+);
 
-awsCli.command('iam list-users').then(function (data) {
+var aws = new Aws(options);
+
+aws.command('iam list-users').then(function (data) {
   console.log('data = ', data); 
 });
 
 //data = {
 //  command: 'aws iam list-users ',
-//  raw: '["{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJBXXXXXXXXXXXXXXXXX\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::03XXXXXXXXX:user/developer\\"\\n        }\\n    ]\\n}\\n",""]',
+//  raw: '{\\n    \\"Users\\": [\\n        {\\n            \\"UserName\\": \\"developer\\", \\n            \\"PasswordLastUsed\\": \\"2015-10-03T17:58:49Z\\", \\n            \\"CreateDate\\": \\"2015-06-03T07:37:25Z\\", \\n            \\"UserId\\": \\"AIDAJBXXXXXXXXXXXXXXXXX\\", \\n            \\"Path\\": \\"/\\", \\n            \\"Arn\\": \\"arn:aws:iam::03XXXXXXXXX:user/developer\\"\\n        }\\n    ]\\n}\\n',
 //  object:
 //   {
 //     Users:
@@ -57,7 +62,7 @@ With callback:
 
 ```js
 
-awsCli.command('iam list-users', function (err, data) {
+aws.command('iam list-users', function (err, data) {
   console.log('data = ', data);
 });
 
@@ -80,6 +85,27 @@ awsCli.command('iam list-users', function (err, data) {
 
 ```
 
+Typescript
+
+```js
+import { Aws, Options } from 'aws-cli-js';
+
+const options = new Options(
+  /* accessKey    */ 'your key',
+  /* secretKey    */ 'your key2',
+  /* currentWorkingDirectory */ null
+);
+
+
+const aws = new Aws(options);
+
+return aws.command('iam list-users').then(function (data) {
+  console.log('data = ', data);
+});
+```
+
+
+
 * describe-instances
 
 ```js
@@ -89,19 +115,12 @@ awsCli.command('ec2 describe-instances --instance-ids i-789b3ba7').then(function
 
 
 //data =  { command: 'aws ec2 describe-instances --instance-ids i-789b3ba7 ',
-//  raw: '["{\\n    \\"Reservations\\": [\\n        {\\n            \\"OwnerId\\": \\"031641171132\\", \\n            \\"ReservationId\\": \\"r-a48ad878\\", \\n            \\"Groups\\": [], \\n            \\"Instances\\": [\\n                {\\n
+//  raw: '{\\n    \\"Reservations\\": [\\n        {\\n            \\"OwnerId\\": \\"031641171132\\", \\n            \\"ReservationId\\": \\"r-a48ad878\\", \\n            \\"Groups\\": [], \\n            \\"Instances\\": [\\n                {\\n
 //          \\"Monitoring\\": {\\n                        \\"State\\": \\"disabled\\"\\n                    }, \\n
 //     \\"PublicDnsName\\": \\"ec2-52-64-166-221.ap-southeast-2.compute.amazonaws.com\\", \\n                    \\"State\\": {\\n
 // ...
 
 ```
-or with options
 
-```js
-awsCli.command('ec2 describe-instances', { 'instance-ids': 'i-789b3ba7' }).then(function (data) {
-  console.log('data = ', data); 
-});
-
-```
 
 

@@ -1,34 +1,44 @@
 {
   "name": "aws-cli-js",
-  "version": "0.0.5",
+  "version": "2.0.0",
   "description": "A node.js wrapper for the aws command line interface",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "test": "grunt"
+    "lint": "tslint src/**/*.ts",
+    "build": "rimraf dist/ && tsc",
+    "test-spec": "ts-node node_modules/blue-tape/bin/blue-tape.js \"src/**/*.spec.ts\" | tap-diff",
+    "test": "npm run lint && npm run build && npm run test-spec",
+    "prepublish": "npm run lint && npm run build && rimraf dist/**/*.spec.* "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Quobject/aws-cli-js.git"
   },
   "keywords": [
-    "aws-cli","aws"
+    "aws",
+    "aws-cli"
   ],
   "author": "Matthias Ludwig <mludwig@quobject.io>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Quobject/aws-cli-js/issues"
   },
   "homepage": "https://github.com/Quobject/aws-cli-js",
   "devDependencies": {
-    "grunt-shell": "~1.1.2",
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.11.3",
-    "mocha": "~2.3.3",
-    "grunt-mocha-test": "~0.12.7",
-    "chai": "~3.3.0"
+    "blue-tape": "^0.2.0",
+    "bluebird": "^3.4.0",
+    "rimraf": "^2.5.2",
+    "tap-diff": "^0.1.1",
+    "ts-node": "^0.7.3",
+    "tslint": "^3.10.2",
+    "typescript": "^1.8.10"
   },
   "dependencies": {
-    "lodash": "~3.10.1",
-    "bluebird": "~2.10.1"
+    "bluebird": "^3.4.0",
+    "lodash": "^4.13.1"
   }
 }
