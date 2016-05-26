@@ -63,17 +63,19 @@ export class Aws {
       return new Promise(function (resolve, reject) {
         exec(execCommand, execOptions, (error, stdout, stderr) => {
           if (error) {
-            console.error(`exec error: ${error}`);
-            reject(error);
+            const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
+            console.error(message);
+            reject(message);
           }
           //console.log(`stdout: ${stdout}`);
-          resolve({ stdout: stdout });
+          resolve({ stderr: stderr, stdout: stdout });
         });
       });
-    }).then(function (data: { stdout: string }) {
+    }).then(function (data: { stderr: string, stdout: string }) {
 
       let result = {
         command: execCommand,
+        error: data.stderr,
         raw: data.stdout,
       };
       return extractResult(result);

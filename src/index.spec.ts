@@ -9,9 +9,9 @@ const config = require('../my_config.json');
 
 console.log('config', config);
 
-test('ansible-playbook-cli-js', t => {
+test('aws-cli-js', t => {
 
-  t.test('playbook.yml -i hosts', t => {
+  t.test('iam list-users', t => {
     const options = new Options(
       /* accessKey    */ config.accessKeyId,
       /* secretKey    */ config.secretAccessKey,
