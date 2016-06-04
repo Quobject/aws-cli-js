@@ -4,6 +4,9 @@ A node.js wrapper for the [aws-cli](http://aws.amazon.com/documentation/cli/) co
 [![NPM](https://nodei.co/npm/aws-cli-js.png?downloads=true&downloadRank=true)](https://nodei.co/npm/aws-cli-js/)
 [![NPM](https://nodei.co/npm-dl/aws-cli-js.png?months=6&height=3)](https://nodei.co/npm/aws-cli-js/)
 
+[![NPM version][npm-image]][npm-url]
+[![NPM downloads][downloads-image]][downloads-url]
+
 ## Installation
 
 ### Step 1: Prerequisites
@@ -122,5 +125,11 @@ awsCli.command('ec2 describe-instances --instance-ids i-789b3ba7').then(function
 
 ```
 
+## License
 
+MIT
 
+[npm-image]: https://img.shields.io/npm/v/aws-cli-js.svg?style=flat
+[npm-url]: https://npmjs.org/package/aws-cli-js
+[downloads-image]: https://img.shields.io/npm/dm/aws-cli-js.svg?style=flat
+[downloads-url]: https://npmjs.org/package/aws-cli-js

@@ -1,6 +1,6 @@
 ﻿/* tslint:disable:no-string-literal */
 import * as _ from 'lodash';
-import * as Promise from 'bluebird';
+import nodeify from 'nodeify-ts';
 import * as child_process from 'child_process';
 const exec = child_process.exec;
 
@@ -26,7 +26,7 @@ export class Aws {
     let aws = this;
     let execCommand = 'aws ' + command;
 
-    return Promise.resolve().then(function () {
+    const promise = Promise.resolve().then(function () {
       //console.log('execCommand =', execCommand);
 
 
@@ -79,8 +79,9 @@ export class Aws {
         raw: data.stdout,
       };
       return extractResult(result);
+    });
 
-    }).nodeify(callback);
+    return nodeify(promise, callback);
   }
 }
 
