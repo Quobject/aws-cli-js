@@ -33,6 +33,7 @@ With promise
 var options = new Options(
   /* accessKey    */ 'your key',
   /* secretKey    */ 'your key2',
+  /* sessionToken */ 'your token',
   /* currentWorkingDirectory */ null
 );
 
@@ -96,6 +97,7 @@ import { Aws, Options } from 'aws-cli-js';
 const options = new Options(
   /* accessKey    */ 'your key',
   /* secretKey    */ 'your key2',
+  /* sessionToken */ 'your token',
   /* currentWorkingDirectory */ null
 );
 

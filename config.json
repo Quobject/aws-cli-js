@@ -1,4 +1,5 @@
 {
   "accessKeyId": "keyid",
-  "secretAccessKey": "secret"
+  "secretAccessKey": "secret",
+  "sessionToken": "token"
 }
