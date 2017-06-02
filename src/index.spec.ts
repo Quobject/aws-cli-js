@@ -15,6 +15,7 @@ test('aws-cli-js', t => {
     const options = new Options(
       /* accessKey    */ config.accessKeyId,
       /* secretKey    */ config.secretAccessKey,
+      /* sessionToken */ config.sessionToken,
       /* currentWorkingDirectory */ null
     );
 

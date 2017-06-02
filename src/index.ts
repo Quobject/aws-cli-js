@@ -52,6 +52,10 @@ export class Aws {
         env['AWS_SECRET_ACCESS_KEY'] = aws.options.secretKey;
       }
 
+      if (aws.options.sessionToken) {
+        env['AWS_SESSION_TOKEN'] = aws.options.sessionToken;
+      }
+
       let execOptions = {
         cwd: aws.options.currentWorkingDirectory,
         env: env,
@@ -89,6 +93,7 @@ export class Aws {
 export interface IOptions {
   accessKey?: string;
   secretKey?: string;
+  sessionToken?: string;
   currentWorkingDirectory?: string;
 }
 
@@ -96,6 +101,7 @@ export class Options implements IOptions {
   public constructor(
     public accessKey?: string,
     public secretKey?: string,
+    public sessionToken?: string,
     public currentWorkingDirectory?: string) { }
 }
 
