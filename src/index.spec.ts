@@ -16,13 +16,13 @@ test('aws-cli-js', t => {
       /* accessKey    */ config.accessKeyId,
       /* secretKey    */ config.secretAccessKey,
       /* sessionToken */ config.sessionToken,
-      /* currentWorkingDirectory */ null
+      /* currentWorkingDirectory */ undefined,
     );
 
 
     const aws = new Aws(options);
 
-    return aws.command('iam list-users').then(function (data) {
+    return aws.command('iam list-users').then( (data: any) => {
       console.log('data = ', util.inspect(data, { depth: 10 }));
       t.ok(data);
       t.ok(data.object.Users);

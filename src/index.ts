@@ -1,11 +1,12 @@
 ﻿/* tslint:disable:no-string-literal */
 import * as _ from 'lodash';
+//import nodeify from '../node_modules/nodeify-ts/lib/';
 import nodeify from 'nodeify-ts';
 import * as child_process from 'child_process';
 const exec = child_process.exec;
 
 
-const extractResult = function (result) {
+const extractResult = (result: Result): Result => {
   try {
     result.object = JSON.parse(result.raw);
   } catch (e) {
@@ -17,12 +18,12 @@ const extractResult = function (result) {
 export class Aws {
 
   constructor(private options: IOptions = {
-    accessKey: null,
-    currentWorkingDirectory: null,
-    secretKey: null,
+    accessKey: undefined,
+    currentWorkingDirectory: undefined,
+    secretKey: undefined,
   }) { }
 
-  public command(command: string, callback?: (err, data) => void) {
+  public command(command: string, callback?: (err: any, data: any) => void) {
     let aws = this;
     let execCommand = 'aws ' + command;
 
@@ -35,7 +36,7 @@ export class Aws {
         'AWS_DEFAULT_PROFILE AWS_CONFIG_FILE').split(' ');
 
 
-      const env = _.reduce(env_vars, function (result, value) {
+      const env: any = _.reduce(env_vars, (result: any, value: string) => {
         if (process.env[value]) {
           result[value] = process.env[value];
         }
@@ -64,7 +65,7 @@ export class Aws {
 
       //console.log('exec options =', execOptions);
 
-      return new Promise(function (resolve, reject) {
+      return new Promise<{ stderr: string, stdout: string }>( (resolve, reject) => {
         exec(execCommand, execOptions, (error, stdout, stderr) => {
           if (error) {
             const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
@@ -75,11 +76,12 @@ export class Aws {
           resolve({ stderr: stderr, stdout: stdout });
         });
       });
-    }).then(function (data: { stderr: string, stdout: string }) {
+    }).then((data: { stderr: string, stdout: string }) => {
 
-      let result = {
+      let result: Result = {
         command: execCommand,
         error: data.stderr,
+        object: null,
         raw: data.stdout,
       };
       return extractResult(result);
@@ -95,6 +97,13 @@ export interface IOptions {
   secretKey?: string;
   sessionToken?: string;
   currentWorkingDirectory?: string;
+}
+
+interface Result {
+  command: string;
+  error: string;
+  raw: string;
+  object: any;
 }
 
 export class Options implements IOptions {
