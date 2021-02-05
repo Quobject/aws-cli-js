@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 //import nodeify from '../node_modules/nodeify-ts/lib/';
 import nodeify from 'nodeify-ts';
 import * as child_process from 'child_process';
-const exec = child_process.exec;
+const execFile = child_process.execFile;
 
 
 const extractResult = (result: Result): Result => {
@@ -25,10 +25,8 @@ export class Aws {
 
   public command(command: string, callback?: (err: any, data: any) => void) {
     let aws = this;
-    let execCommand = 'aws ' + command;
 
     const promise = Promise.resolve().then(function () {
-      //console.log('execCommand =', execCommand);
 
 
       const env_vars = ('HOME PATH AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY ' +
@@ -66,7 +64,7 @@ export class Aws {
       //console.log('exec options =', execOptions);
 
       return new Promise<{ stderr: string, stdout: string }>( (resolve, reject) => {
-        exec(execCommand, execOptions, (error, stdout, stderr) => {
+        execFile('aws', [...command.split(' ')], execOptions, (error: Error | null, stdout: string, stderr: string) => {
           if (error) {
             const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
             console.error(message);
@@ -79,7 +77,7 @@ export class Aws {
     }).then((data: { stderr: string, stdout: string }) => {
 
       let result: Result = {
-        command: execCommand,
+        command,
         error: data.stderr,
         object: null,
         raw: data.stdout,
