@@ -1,9 +1,6 @@
 # aws-cli-js
 A node.js wrapper for the [aws-cli](http://aws.amazon.com/documentation/cli/) command line interface
 
-[![NPM](https://nodei.co/npm/aws-cli-js.png?downloads=true&downloadRank=true)](https://nodei.co/npm/aws-cli-js/)
-[![NPM](https://nodei.co/npm-dl/aws-cli-js.png?months=6&height=3)](https://nodei.co/npm/aws-cli-js/)
-
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
