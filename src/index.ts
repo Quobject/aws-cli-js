@@ -1,7 +1,4 @@
-﻿/* tslint:disable:no-string-literal */
-import * as _ from 'lodash';
-//import nodeify from '../node_modules/nodeify-ts/lib/';
-import nodeify from 'nodeify-ts';
+﻿import nodeify from 'nodeify-ts';
 import * as child_process from 'child_process';
 const execFile = child_process.execFile;
 
@@ -23,10 +20,10 @@ export class Aws {
     secretKey: undefined,
   }) { }
 
-  public command(command: string, callback?: (err: any, data: any) => void) {
-    let aws = this;
+  public command(command: string, callback?: (err: any, data: any) => void): Promise<any> {
+    
 
-    const promise = Promise.resolve().then(function () {
+    const promise = Promise.resolve().then( () => {
 
 
       const env_vars = ('HOME PATH AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY ' +
@@ -34,29 +31,29 @@ export class Aws {
         'AWS_DEFAULT_PROFILE AWS_CONFIG_FILE').split(' ');
 
 
-      const env: any = _.reduce(env_vars, (result: any, value: string) => {
+      const env = env_vars.reduce((result: any, value: string) => {
         if (process.env[value]) {
           result[value] = process.env[value];
         }
         return result;
-      }, {});
+      },{});
 
       env['DEBUG'] = '';
 
-      if (aws.options.accessKey) {
-        env['AWS_ACCESS_KEY_ID'] = aws.options.accessKey;
+      if (this.options.accessKey) {
+        env['AWS_ACCESS_KEY_ID'] = this.options.accessKey;
       }
 
-      if (aws.options.secretKey) {
-        env['AWS_SECRET_ACCESS_KEY'] = aws.options.secretKey;
+      if (this.options.secretKey) {
+        env['AWS_SECRET_ACCESS_KEY'] = this.options.secretKey;
       }
 
-      if (aws.options.sessionToken) {
-        env['AWS_SESSION_TOKEN'] = aws.options.sessionToken;
+      if (this.options.sessionToken) {
+        env['AWS_SESSION_TOKEN'] = this.options.sessionToken;
       }
 
-      let execOptions = {
-        cwd: aws.options.currentWorkingDirectory,
+      const execOptions = {
+        cwd: this.options.currentWorkingDirectory,
         env: env,
         maxBuffer: 200 * 1024 * 1024,
       };
@@ -67,7 +64,7 @@ export class Aws {
         execFile('aws', [...command.split(' ')], execOptions, (error: Error | null, stdout: string, stderr: string) => {
           if (error) {
             const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
-            console.error(message);
+            //console.error(message);
             reject(message);
           }
           //console.log(`stdout: ${stdout}`);
@@ -76,7 +73,7 @@ export class Aws {
       });
     }).then((data: { stderr: string, stdout: string }) => {
 
-      let result: Result = {
+      const result: Result = {
         command,
         error: data.stderr,
         object: null,
