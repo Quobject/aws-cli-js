@@ -8,11 +8,13 @@ export interface IOptions {
     secretKey?: string;
     sessionToken?: string;
     currentWorkingDirectory?: string;
+    cliPath: string;
 }
 export declare class Options implements IOptions {
     accessKey?: string | undefined;
     secretKey?: string | undefined;
     sessionToken?: string | undefined;
     currentWorkingDirectory?: string | undefined;
-    constructor(accessKey?: string | undefined, secretKey?: string | undefined, sessionToken?: string | undefined, currentWorkingDirectory?: string | undefined);
+    cliPath: string;
+    constructor(accessKey?: string | undefined, secretKey?: string | undefined, sessionToken?: string | undefined, currentWorkingDirectory?: string | undefined, cliPath?: string);
 }

@@ -31,7 +31,8 @@ var options = new Options(
   /* accessKey    */ 'your key',
   /* secretKey    */ 'your key2',
   /* sessionToken */ 'your token',
-  /* currentWorkingDirectory */ null
+  /* currentWorkingDirectory */ null,
+  /* cliPath */ 'aws'
 );
 
 var aws = new Aws(options);

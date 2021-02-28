@@ -18,6 +18,7 @@ export class Aws {
     accessKey: undefined,
     currentWorkingDirectory: undefined,
     secretKey: undefined,
+    cliPath: 'aws'
   }) { }
 
   public command(command: string, callback?: (err: any, data: any) => void): Promise<any> {
@@ -59,9 +60,9 @@ export class Aws {
       };
 
       //console.log('exec options =', execOptions);
-
+      //console.log('options.cliPath =', this.options.cliPath);
       return new Promise<{ stderr: string, stdout: string }>( (resolve, reject) => {
-        execFile('aws', [...command.split(' ')], execOptions, (error: Error | null, stdout: string, stderr: string) => {
+        execFile(this.options.cliPath, [...command.split(' ')], execOptions, (error: Error | null, stdout: string, stderr: string) => {
           if (error) {
             const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
             //console.error(message);
@@ -92,6 +93,7 @@ export interface IOptions {
   secretKey?: string;
   sessionToken?: string;
   currentWorkingDirectory?: string;
+  cliPath: string;
 }
 
 interface Result {
@@ -106,6 +108,7 @@ export class Options implements IOptions {
     public accessKey?: string,
     public secretKey?: string,
     public sessionToken?: string,
-    public currentWorkingDirectory?: string) { }
+    public currentWorkingDirectory?: string,
+    public cliPath = 'aws') { }
 }
 

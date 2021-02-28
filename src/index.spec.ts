@@ -16,6 +16,7 @@ describe('iam list-users', () => {
       /* secretKey    */ config.secretAccessKey,
       /* sessionToken */ config.sessionToken,
       /* currentWorkingDirectory */ undefined,
+      /* cliPath */ 'aws',
     );
 
 
