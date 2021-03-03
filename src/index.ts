@@ -61,8 +61,12 @@ export class Aws {
 
       //console.log('exec options =', execOptions);
       //console.log('options.cliPath =', this.options.cliPath);
+      let cmd = [...command.split(' ')];
+      cmd = cmd.filter(v => v.length > 0);
+      //console.log('cmd2 = ', cmd);      
+
       return new Promise<{ stderr: string, stdout: string }>( (resolve, reject) => {
-        execFile(this.options.cliPath, [...command.split(' ')], execOptions, (error: Error | null, stdout: string, stderr: string) => {
+        execFile(this.options.cliPath, cmd, execOptions, (error: Error | null, stdout: string, stderr: string) => {
           if (error) {
             const message = `error: '${error}' stdout = '${stdout}' stderr = '${stderr}'`;
             //console.error(message);
