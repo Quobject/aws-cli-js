@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 my_config.json
-
+my_config2.json
 
 .DS_Store
 npm-debug.log

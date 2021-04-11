@@ -1,6 +1,6 @@
 {
   "name": "aws-cli-js",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A node.js wrapper for the aws command line interface",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -11,6 +11,7 @@
     "lint": "eslint . --fix --ext .ts",
     "clean": "npx del-cli lib",
     "test": "jest",
+    "test16": "jest ./src/issue#16.spec.ts",
     "prepare": "npm run lint && tsc && npx del-cli lib/**/*.spec.* "
   },
   "repository": {
