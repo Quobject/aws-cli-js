@@ -26,10 +26,10 @@ export class Aws {
   public command(command: string, callback?: (err: any, data: any) => void): Promise<any> {
 
     const execCommand = `${this.options.cliPath} ${command}`;
-    
+
     const env_vars = ('HOME PATH AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY ' +
       'AWS_SESSION_TOKEN AWS_DEFAULT_REGION ' +
-      'AWS_DEFAULT_PROFILE AWS_CONFIG_FILE').split(' ');
+      'AWS_PROFILE AWS_DEFAULT_PROFILE AWS_CONFIG_FILE').split(' ');
 
 
     const env = env_vars.reduce((result: any, value: string) => {
