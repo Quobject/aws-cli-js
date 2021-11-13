@@ -6,6 +6,11 @@ A node.js wrapper for the [aws-cli](http://aws.amazon.com/documentation/cli/) co
 
 ## Installation
 
+### Warning
+
+Code uses exec = child_process.exec; https://github.com/Quobject/docker-cli-js/issues/22
+
+
 ### Step 1: Prerequisites
 
 The aws command line interface must be installed and accessible in the path
